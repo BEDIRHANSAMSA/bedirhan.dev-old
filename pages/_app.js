@@ -1,8 +1,17 @@
-import 'tailwindcss/tailwind.css'
+import '../styles/global.css'
+import Header from "../components/header";
 // import App from 'next/app'
 
 function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
+    return (
+    <div className="antialiased text-gray-600">
+        <Header/>
+        <main className="mt-6 mb-20">
+            <Component {...pageProps} />
+        </main>
+    </div>
+    )
+
 }
 
 // Only uncomment this method if you have blocking data requirements for
