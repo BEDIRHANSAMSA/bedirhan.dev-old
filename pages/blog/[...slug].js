@@ -9,10 +9,12 @@ export default function Post({post}){
     })
     return (
         <div className="site-container">
-            <article>
+            <article className="prose">
                 <h1 className="text-4xl font-bold">{post.frontMatter.title}</h1>
+                <p className="text-gray-600">{post.frontMatter.date}</p>
                 <p>{post.frontMatter.excerpt}</p>
-                <hr className="my-4"/>
+                <hr className="my-4 mt-8 border-t-2 2xl:w-96 mx-auto"/>
+                <img src={post.frontMatter.image} alt={post.frontMatter.alt}/>
                 <div className="prose">{content}</div>
             </article>
         </div>

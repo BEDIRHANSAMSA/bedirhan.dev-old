@@ -1,15 +1,19 @@
 import Link from 'next/link'
 
 export default function Header(){
+    const menu= [
+        {title:'Hakkımıda', to:'/'},
+        {title:'Blog',to:'/blog'},
+    ]
+
     return (
         <header className="site-container py-6">
             <nav className="space-x-4">
-                <Link href="/">
-                    <a>Hakkımda</a>
-                </Link>
-                <Link href="/blog">
-                    <a>Blog</a>
-                </Link>
+                {menu.map(({ title, to }, index) => (
+                    <Link href={to} key={index}>
+                        <a>{title}</a>
+                    </Link>
+                ))}
             </nav>
         </header>
     )

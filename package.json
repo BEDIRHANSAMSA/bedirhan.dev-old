@@ -7,6 +7,7 @@
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.1.2",
     "@tailwindcss/typography": "^0.4.0",
+    "jest-worker": "^26.6.2",
     "next": "^10.1.2",
     "next-mdx": "^0.6.0",
     "prettier": "^2.2.1",

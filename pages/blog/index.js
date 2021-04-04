@@ -5,12 +5,11 @@ function Blog({posts}) {
     return (
         <div className="site-container">
             <div className="space-y-4">
-
             </div>
             {posts.map(post => {
                     return (
                         <article key={post.url}>
-                            <h2 className="text-xl font-bold">
+                            <h2 className="text-xl3 font-bold">
                                 <Link href={post.url}>
                                     {post.frontMatter.title}
                                 </Link>
@@ -22,7 +21,6 @@ function Blog({posts}) {
                         </article>
                     )
                 })}
-
         </div>
     )
 }
