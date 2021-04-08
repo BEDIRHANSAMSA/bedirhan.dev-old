@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@auth0/auth0-react": "^1.4.0",
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.1.2",
     "@tailwindcss/typography": "^0.4.0",
