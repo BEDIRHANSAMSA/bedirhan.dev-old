@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function Header(){
     const menu= [
-        {title:'Hakkımıda', to:'/'},
+        {title:'Hakkımda', to:'/'},
         {title:'Blog',to:'/blog'},
     ]
 
