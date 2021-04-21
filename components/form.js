@@ -12,7 +12,7 @@ export default function Form({onSubmit, textSet,text}) {
                 />
                 {isAuthenticated ?
                     <div className="flex items-center space-x-2">
-                        <div className="relative inline-block  mt-5">
+                        <div className="relative inline-block mt-5">
                             <img className="inline-block object-cover w-12 h-12 rounded-full"
                                  src={user.picture} alt={user.name}
                             />
