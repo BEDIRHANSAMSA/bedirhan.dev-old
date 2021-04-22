@@ -11,22 +11,25 @@ export default function Form({onSubmit, textSet,text}) {
                     value={text}
                 />
                 {isAuthenticated ?
-                    <div className="flex items-center space-x-2">
-                        <div className="relative inline-block mt-5">
-                            <img className="inline-block object-cover w-12 h-12 rounded-full"
-                                 src={user.picture} alt={user.name}
-                            />
-                            <span
-                                className=" absolute bottom-0 right-0 inline-block w-3 h-3 bg-green-600 border-2 border-white rounded-full"/>
+                    <div className="flex items-center space-x-2 justify-between">
+                        <div className="flex items-center space-x-2">
+                            <div className="relative inline-block mt-5">
+                                <img className="inline-block object-cover w-12 h-12 rounded-full"
+                                     src={user.picture} alt={user.name}
+                                />
+                                <span
+                                    className=" absolute bottom-0 right-0 inline-block w-3 h-3 bg-green-600 border-2 border-white rounded-full"/>
+                            </div>
+                            <span className="mt-5">{user.name}</span>
+                            <button type="button" className="mt-5 text-red-600"
+                                    typeof="button"
+                                    onClick={() =>
+                                        logout({returnTo: process.env.NEXT_PUBLIC_URL + '/blog'})
+                                    }>
+                                X
+                            </button>
                         </div>
-                        <span className="mt-5">{user.name}</span>
-                        <button type="button" className="mt-5 text-red-600"
-                                typeof="button"
-                                onClick={() =>
-                                    logout({returnTo: process.env.NEXT_PUBLIC_URL + '/blog'})
-                                }>
-                            X
-                        </button>
+
                         <button type="submit" className="mt-5 bg-blue-600 text-white rounded px-2 py-2 ">Gönder
                         </button>
                     </div>
