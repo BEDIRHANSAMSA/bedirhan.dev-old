@@ -12,7 +12,7 @@ function HomePage() {
                             I am interested in topics such as C#, Computer Technologies, science, sociology.
                         </p>
                         <p>
-                            I am a first year student at Istanbul Medipol University.
+                            I am a 2nd-year student at Istanbul Medipol University.
                         </p>
                     </div>
                 </div>
