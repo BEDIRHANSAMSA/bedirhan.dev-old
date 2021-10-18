@@ -12,7 +12,6 @@ export default function Post({post}) {
     const content = useHydrate(post, {
         components: mdxComponents,
     })
-
     return (
         <div className="site-container">
             <article className="prose">
@@ -20,7 +19,11 @@ export default function Post({post}) {
                 <p className="text-gray-600">{post.frontMatter.date}</p>
                 <p>{post.frontMatter.excerpt}</p>
                 <hr className="my-4 mt-8 border-t-2 2xl:w-96 mx-auto"/>
-                <img src={post.frontMatter.image} alt={post.frontMatter.alt}/>
+                {
+                    post.frontMatter.image !== undefined ? (
+                        <img src={post.frontMatter.image} alt={post.frontMatter.alt}/>
+                    ) : null
+                }
                 <div className="prose">{content}</div>
             </article>
 

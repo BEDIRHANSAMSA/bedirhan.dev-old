@@ -1,0 +1,63 @@
+---
+title: C# - Uygulamanıza Çoklu Dil Desteği Getirin
+excerpt: Uygulamanıza çoklu dil desteği getirmek artık çok basit
+author:
+- bedirhansamsa
+featured: true
+date: "2021-10-18"
+---
+Merhaba, bu blogda projenize nasıl çoklu dil desteği getireceğinizi göstereceğim.
+
+1. Solution'a Sağ Tık > Ekle > Yeni Proje (Solution Right Click > Add > New Project
+![](/blog-02/img.png)
+2. Açılan sayfada arama kısmına "Class Library" yazıp projenize uygun olarak .NET Core veya .NET Framework seçin.
+![](/blog-02/img_1.png)
+3. Açılan sayfada Proje Adı kısmına "[PROJE_ADI].Language" veya "Language" yazabilirsiniz.
+![](/blog-02/img_2.png)
+4. Yeni projede oluşan Class1.cs dosyasını silebilirsiniz. Yeni Projeye "Resources" adında bir dosya açıyoruz.
+5. Bu dosyaya Sağ Tık > Ekle > Yeni Öğe (Right Click> New> New Item) sağ üstten arama kısmına Resources yazıyoruz.
+![](/blog-02/img_3.png)
+6. Adı (Name) kısmına "Resources" yazıyoruz. Bu oluşan dosya bizim ana dilimiz olacak. Ana dili isterseniz Türkçe yapabilirsiniz, kişisel tavsiyem İngilizce olmasıdır.
+7. Name kısmı her dilde aynı olmalıdır. Value kısmı dile göre değişecektir.
+![](/blog-02/img_4.png)
+8. Beşinci Adımda yaptığımız gibi yeni bir dosya ekleyeceğiz Adı (Name) "Resources.tr.resx" olacaktır.
+9. Ana dilimize eklediğimiz gibi buraya da Hello değerini ekleyeceğiz.
+![](/blog-02/img_5.png)
+10. Her iki dosya ya da tıklayarak aşağıdaki kutucuktaki kısmı kendi proje adınıza göre yazmanız gerekmektedir.
+![](/blog-02/img_8.png)
+11. Ana dil dosyamıza kutucuktaki değeri yazıyoruz. (PublicResXFileCodeGenerator)
+![](/blog-02/img_9.png)
+10. Ana projemize Referans olarak Language projesini göstereceğiz bunun için Ana Projede  Bağımlılıklar > Proje Referansı Ekle (Dependencies > Add Project Reference)
+![](/blog-02/img_6.png)
+11. Dil Projemizi seçiyoruz.
+![](/blog-02/img_7.png)
+11. Projemizin Ana Çalışma yerinde aşağıdaki metodu çalıştıracağız. Benim ki Program.cs olduğu için oraya yazıyorum.
+```csharp
+private void SetLanguageDictionary()
+{
+    switch (Thread.CurrentThread.CurrentCulture.ToString())
+    {
+        case "en-US":
+            Language.Resources.Culture = new CultureInfo("en-US");
+            break;
+        case "tr-TR":
+            Language.Resources.Culture = new CultureInfo("tr-TR");
+            break;
+        default
+            : //default english because there can be so many different system language, we rather fallback on english in this case.
+            Language.Resources.Culture = new CultureInfo("tr-TR");
+            break;
+    }
+}
+```
+
+15. Ardından ekrana bir yazı yazdırmak istediğimde Resources.(...) ne yazdırmak istiyorsam .. kısmına onu koyacağız.
+![](/blog-02/img_10.png)
+```csharp
+SetLanguageDictionary();
+Console.Write(Resources.Hello);
+```
+Sistem dilim Türkçe olduğu için ekrana türkçe olarak yazdı.
+![](/blog-02/img_11.png)
+
+Github projesine gitmek için [buraya tıklayın](https://github.com/BEDIRHANSAMSA/MultiLang).

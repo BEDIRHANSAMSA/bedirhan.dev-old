@@ -5,7 +5,6 @@ function Blog({posts}) {
     return (
         <div className="site-container">
             <div className="space-y-4">
-            </div>
             {posts.map(post => {
                     return (
                         <article key={post.url}>
@@ -14,13 +13,14 @@ function Blog({posts}) {
                                     {post.frontMatter.title}
                                 </Link>
                             </h2>
-                            <p>{post.frontMatter.excerpt}</p>
+                            <p>{post.frontMatter.excerpt}...</p>
                             <div className="text-gray-600">
                                 <span>{post.frontMatter.date}</span>
                             </div>
                         </article>
                     )
                 })}
+            </div>
         </div>
     )
 }

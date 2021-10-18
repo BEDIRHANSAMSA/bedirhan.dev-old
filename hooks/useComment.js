@@ -2,7 +2,7 @@ import {useAuth0} from "@auth0/auth0-react";
 import { useEffect, useState } from 'react'
 
 
-export default function (){
+export default function useComment(){
     const {getAccessTokenSilently} = useAuth0()
     const [url, urlSet] = useState(null);
     const [comments, commentsSet] = useState([]);
