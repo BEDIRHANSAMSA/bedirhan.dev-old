@@ -1,22 +1,43 @@
 import querystring from 'querystring';
+import axios from "axios";
 
+const {
+    NEXT_PUBLIC_SPOTIFY_CLIENT_ID: client_id,
+    NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET: client_secret,
+    NEXT_PUBLIC_SPOTIFY_REFRESH_TOKEN: refresh_token,
+} = process.env;
 
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
-
-
-export const getNowPlaying = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Content-Type", "application/json");
-    myHeaders.append("Authorization", "Bearer BQApUB-DbqNwPB3rlIhieR5XVSI8pBw8mkVih0KGhl82NO4ZDjqW2paWGrBq6xeEbUXazBu4rrtlRxYp55tAzFfIywHyrjMumNtczC75RjLt8b7KSQTWVJ7jcBWPMMBOi1ED2zXc8aPScLhIUWYGyvEm64y-BiXTyLDG1Acm");
-
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
+const getAccessToken = async () => {
+    const data = querystring.stringify({
+        'grant_type': 'refresh_token',
+        'refresh_token': refresh_token
+    });
+    const config = {
+        method: 'post',
+        url: TOKEN_ENDPOINT,
+        headers: {
+            'Authorization': `Basic ${basic}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: data
     };
 
-    return await fetch("https://api.spotify.com/v1/me/player/currently-playing", requestOptions)
+    return axios(config).then(response=>response.data)
+
+};
+
+export const getNowPlaying = async () => {
+    const {access_token} = await getAccessToken();
+
+    return fetch(NOW_PLAYING_ENDPOINT, {
+        headers: {
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
 };
 
 export default async (_, res) => {

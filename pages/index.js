@@ -4,7 +4,6 @@ import {SiSpotify} from "react-icons/si";
 function HomePage() {
     const fetcher = (url) => fetch(url).then((r) => r.json());
     const { data } = useSWR('/api/spotify', fetcher);
-    console.log(data)
     return (
         <>
             <div className="site-container">
