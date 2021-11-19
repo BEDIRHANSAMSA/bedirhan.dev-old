@@ -1,4 +1,10 @@
+import useSWR from 'swr';
+import {SiSpotify} from "react-icons/si";
+
 function HomePage() {
+    const fetcher = (url) => fetch(url).then((r) => r.json());
+    const { data } = useSWR('/api/spotify', fetcher);
+    console.log(data)
     return (
         <>
             <div className="site-container">
@@ -34,6 +40,45 @@ function HomePage() {
                         d="M368.29 677.91C368.29 652.03 368.29 626.61 368.29 600.86C370.02 600.77 371.47 600.64 372.92 600.64C417.09 600.63 461.26 600.68 505.42 600.6C522.94 600.57 535.79 608.66 542.71 624.18C548.78 637.79 546.94 651.35 537.08 663.44C528.59 673.85 517.38 678.13 504.6 678.2C459.93 678.43 415.26 678.28 370.6 678.26C369.96 678.26 369.32 678.07 368.29 677.91Z"
                         fill="#FEFDFE"/>
                 </svg>
+            </div>
+
+            <div className="site-container">
+                <div  className='flex items-center justify-center'>
+                    <a
+                        target='_blank'
+                        rel='noopener noreferer'
+                        href={
+                            data?.isPlaying
+                                ? data.songUrl
+                                : 'https://open.spotify.com/user/hb8cd66cli5ire7hpt67765rg'
+                        }
+                        className='relative flex items-center p-5 space-x-4 transition-shadow border rounded-md hover:shadow-md w-72'
+                    >
+                        <div className='w-16'>
+                            {data?.isPlaying ? (
+                                <img
+                                    className='w-16 shadow-sm'
+                                    src={data?.albumImageUrl}
+                                    alt={data?.album}
+                                />
+                            ) : (
+                                <SiSpotify size={64} color={'#1ED760'} />
+                            )}
+                        </div>
+
+                        <div className='flex-1'>
+                            <p className='font-bold component'>
+                                {data?.isPlaying ? data.title : 'Not Listening'}
+                            </p>
+                            <p className='text-xs font-dark'>
+                                {data?.isPlaying ? data.artist : 'Spotify'}
+                            </p>
+                        </div>
+                        <div className='absolute bottom-1.5 right-1.5'>
+                            <SiSpotify size={20} color={'#1ED760'} />
+                        </div>
+                    </a>
+                </div>
             </div>
         </>
     )
