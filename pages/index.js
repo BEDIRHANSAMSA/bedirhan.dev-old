@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 import {SiSpotify} from "react-icons/si";
+import Emoji from "../components/emoji";
 
 function HomePage() {
     const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -9,7 +10,7 @@ function HomePage() {
             <div className="site-container">
                 <div>
                     <h1 className="text-4xl font-bold leading-normal">
-                        Hey there<span className="animate-pulse rounded-full bg-purple-400">&#128075;</span> My name is Bedirhan and I am Software Developer. I am creating modern and responsive
+                        Hey there<Emoji className="font-normal" symbol="👋" /> My name is Bedirhan and I am Software Developer. I am creating modern and responsive
                         applications.
                     </h1>
                     <div className="mt-5 leading-loose text-xl font-light">
